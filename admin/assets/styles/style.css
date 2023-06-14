@@ -1,0 +1,311 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+ 
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+ 
+}
+
+img {
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.content-wrapper {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 78px);
+  left: 78px;
+  padding: 12px;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.content-wrapper .text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1D1B31;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 78px;
+  background: #11101D;
+  padding: 6px 14px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.sidebar .logo-content .logo {
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 50px;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all .7s ease;
+  transition: all .7s ease;
+}
+
+.sidebar .logo-content .logo i {
+  font-size: 28px;
+  margin-right: 5px;
+}
+
+.sidebar .logo-content .logo .logo-name {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.sidebar .logo-content #toggleMenu {
+  position: absolute;
+  color: #FFFFFF;
+  left: 50%;
+  top: 6px;
+  font-size: 20px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.sidebar .nav-list {
+  margin-top: 20px;
+}
+
+.sidebar .nav-list .nav-item {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin: 0 5px;
+  line-height: 50px;
+}
+
+.sidebar .nav-list .nav-item .nav-link {
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 12px;
+  white-space: nowrap;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.sidebar .nav-list .nav-item .nav-link .nav-name {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.sidebar .nav-list .nav-item .nav-link:hover {
+  color: #11101D;
+  background: #FFFFFF;
+}
+
+.sidebar .nav-list .nav-item .tooltip {
+  position: absolute;
+  top: 0;
+  left: 122px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  height: 35px;
+  width: 122px;
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  line-height: 35px;
+  text-align: center;
+  -webkit-transition: 0s;
+  transition: 0s;
+  opacity: 0;
+  pointer-events: none;
+  display: block;
+}
+
+.sidebar .nav-list .nav-item i {
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  line-height: 50px;
+  text-align: center;
+}
+
+.sidebar .nav-list .nav-item i.bx-search {
+  position: absolute;
+  z-index: 99;
+  color: #FFFFFF;
+  font-size: 22px;
+  -webkit-transition: all 0.5 ease;
+  transition: all 0.5 ease;
+}
+
+.sidebar .nav-list .nav-item i.bx-search:hover {
+  background: #FFFFFF;
+  color: #1D1D1D;
+}
+
+.sidebar .nav-list .nav-item:hover .tooltip {
+  top: 50%;
+  opacity: 1;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+.sidebar .profile-content {
+  position: absolute;
+  width: 100%;
+  color: #FFFFFF;
+  bottom: 0;
+  left: 0;
+}
+
+.sidebar .profile-content .profile {
+  position: relative;
+  padding: 10px 6px;
+  height: 60px;
+  background: none;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+}
+
+.sidebar .profile-content .profile .profile-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  -webkit-transition: all .7s ease;
+  transition: all .7s ease;
+}
+
+.sidebar .profile-content .profile .profile-details .profile-image {
+  width: 45px;
+  height: 45px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 12px;
+}
+
+.sidebar .profile-content .profile .profile-details .name-job {
+  margin-left: 10px;
+}
+
+.sidebar .profile-content .profile .profile-details .name-job .name {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.sidebar .profile-content .profile .profile-details .name-job .job {
+  font-size: 12px;
+}
+
+.sidebar .profile-content .profile #logout {
+  position: absolute;
+  left: 50%;
+  bottom: 5px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  min-width: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  border-radius: 12px;
+  text-align: center;
+  background: #1D1B31;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+  cursor: pointer;
+}
+
+.sidebar.active {
+  width: 260px;
+}
+
+.sidebar.active .logo-content .logo {
+  opacity: 1;
+  pointer-events: none;
+}
+
+.sidebar.active .logo-content #toggleMenu {
+  left: 90%;
+}
+
+.sidebar.active .nav-list .nav-item .nav-link .nav-name {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar.active .nav-list .nav-item .tooltip {
+  display: none;
+}
+
+.sidebar.active .profile-content .profile {
+  background: #1D1B31;
+}
+
+.sidebar.active .profile-content .profile .profile-details {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar.active .profile-content .profile #logout {
+  left: 88%;
+  background: none;
+}
+
+.sidebar.active ~ .content-wrapper {
+  width: calc(100% - 260px);
+  left: 260px;
+}
+
+.sidebar .nav-list .nav-item .sidebar-search {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+  background: #1D1B31;
+  padding-left: 50px;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+/*# sourceMappingURL=style.css.map */
