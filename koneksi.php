@@ -1,5 +1,6 @@
 <?php
 $koneksi = new mysqli("localhost", "root", "",  "tokoalbinda"); 
+session_start();
 
 ?>
 <!DOCTYPE html>

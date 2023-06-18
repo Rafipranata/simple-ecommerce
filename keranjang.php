@@ -1,9 +1,30 @@
 <?php
-session_start();
-include "koneksi.php";
+  include 'koneksi.php';
 
+if (isset($_POST['beli'])) {
+  // Proses pembelian
+  // ...
 
+  // Redirect ke halaman keranjang atau halaman lain yang sesuai
+  header("Location: keranjang.php");
+  exit;
+}
+
+// Memeriksa kunci "keranjang"
+if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
+  // Menggunakan foreach hanya jika "keranjang" adalah array yang terdefinisi
+  foreach ($_SESSION["keranjang"] as $item) {
+    // Lakukan sesuatu dengan setiap item dalam keranjang
+    // ...
+  }
+} else {
+  // Menampilkan pesan "Keranjang kosong"
+  echo "<script>alert('Keranjang kosong, silahkan beli produk terlebih dahulu');</script>";
+  echo "<script>window.location.href = 'index.php';</script>";
+  exit;
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,21 +48,21 @@ include "koneksi.php";
           <a class="nav-link " aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Keranjang</a>
+          <a class="nav-link " href="keranjang.php">Keranjang</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+          <?php if (isset($_SESSION["pelanggan"])):?>
+            <a class="nav-link active" href="logout.php" id="navbarDropdown">
+            Logout
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+          <?php  else:?>
+          <a class="nav-link active" href="login.php" id="navbarDropdown">
+            Login
+          </a>
+          <?php endif?>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link" href="chekout.php">Checkout</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -69,7 +90,7 @@ include "koneksi.php";
       </thead>
       <tbody> 
         <?php $no = 1;?>
-      <?php  foreach($_SESSION["keranjang"] as $id_produk => $jumlah):?>
+      <?php foreach($_SESSION["keranjang"] as $id_produk => $jumlah): ?>
         <?php $ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk = '$id_produk'");
               $pecah = $ambil -> fetch_assoc();
               $subharga = $pecah['harga_produk'] * $jumlah; ?>
@@ -81,11 +102,19 @@ include "koneksi.php";
           <td>Rp.<?php echo number_format($subharga)?></td>
         </tr>
         <?php $no++?>
-        <?php  endforeach ?>
+        <?php endforeach ?>
       </tbody>
     </table>
     <a href="index.php" type="button" class="btn btn-outline-info">Lanjut Belanja</a>
-    <a href="#" class="btn btn-primary">Checkout</a>
+    <?php if (isset($_SESSION["pelanggan"])):?>
+            <a type="button" class="btn btn-primary" href="chekout.php" id="navbarDropdown">
+            Checkout
+          </a>
+          <?php else: ?>
+          <a type="button" class="btn btn-primary" href="login.php" id="navbarDropdown" onclick="alert('Anda harus login terlebih dahulu')">
+            Checkout
+          </a>
+          <?php endif?>
   </div>
 
 

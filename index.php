@@ -29,15 +29,15 @@ include "koneksi.php"
           <a class="nav-link" href="keranjang.php">Keranjang</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+          <?php if (isset($_SESSION["pelanggan"])):?>
+            <a class="nav-link" href="logout.php" id="navbarDropdown">
+            Logout
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+          <?php else: ?>
+          <a class="nav-link" href="login.php" id="navbarDropdown">
+            Login
+          </a>
+          <?php endif?>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
@@ -60,13 +60,13 @@ include "koneksi.php"
       <?php $ambil = $koneksi->query("SELECT * FROM produk");?>
       <?php while ($perproduk = $ambil->fetch_assoc()){?>
         <div class="col-lg-4 col-md-6 col-sm-12 mb-3 ">
-          <div class="card bg-dark " style="width: 18rem; color:#eaeaea; margin: 0 auto;">
+          <div class="card bg-dark " style="width: 18rem; color:#eaeaea; margin: 0px auto;">
               <img src="fotoProduk/<?php echo $perproduk['foto_produk'] ?>" class="card-img-top" alt="FotoEror">
               <div class="card-body">
                   <h5 class="card-title"><?php echo $perproduk['nama_produk'] ?></h5>
                   <p class="card-text">Rp.<?php echo number_format( $perproduk['harga_produk'] ) ?></p>
-                  <a href="beli.php?id=<?php echo $perproduk['id_produk']   ?>" class="btn btn-primary w-50 md-block">Beli</a>
-                  <a href="#" class="btn btn-outline-info">Detail Produk</a>
+                  <a href="beli.php?id=<?php echo $perproduk['id_produk']   ?>" class="btn btn-primary w-50 md-block" name='beli'>Beli</a>
+                  <a href="detailProduk.php?id=<?php echo $perproduk['id_produk']   ?>" class="btn btn-outline-info">Detail Produk</a>
                 </div>
             </div>
         </div>

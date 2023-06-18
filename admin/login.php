@@ -49,7 +49,7 @@ $koneksi = new mysqli("localhost", "root", "",  "tokoalbinda");
         AND password = '$_POST[pw]' ");
         $yangcocok = $ambil->num_rows;
 
-        if ($yangcocok > 0) {
+        if ($yangcocok == 1) {
             $_SESSION['admin']=$ambil->fetch_assoc();
             echo "<div class = 'ui success message'>
             
