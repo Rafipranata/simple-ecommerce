@@ -4,29 +4,31 @@ $koneksi = new mysqli("localhost", "root", "",  "tokoalbinda");
 
 if (!isset($_SESSION['admin'])) {
     echo "<script> alert('Anda Harus Login')  </script>";
-    echo "<script> location='login.php'  </script>";
+    echo "<script> location='login.php'</script>";
     exit();
 }
 
 
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toko Albinda</title>
-    <link rel="stylesheet" href="assets/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+
     <script src="assets/semantic.min.js"></script>
     <link rel="stylesheet" href="assets/styles/style.css">
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
+    <link href=" https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/vendors/boxicons/css/boxicons.min.css">
 </head>
 
@@ -40,7 +42,7 @@ if (!isset($_SESSION['admin'])) {
         <div class="logo-content">
             <div class="logo">
                 <i class="bx bx-code-alt"></i>
-                <div class="logo-name">ADMIN</div>
+                <div class="logo-name"><?php echo $_SESSION['admin']['nama_lengkap'] ?></div>
             </div>
             <i class="bx bx-menu" id="toggleMenu"></i>
         </div>
@@ -90,11 +92,6 @@ if (!isset($_SESSION['admin'])) {
         
         
     <?php
-        
-        
-
-        
-        
         
         if (isset($_GET['halaman'])) {
             

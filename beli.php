@@ -1,5 +1,5 @@
 <?php
-session_start();
+include "koneksi.php";
 $id_produk = $_GET['id'];
 if (isset($_SESSION['keranjang'][$id_produk])) {
     $_SESSION['keranjang'][$id_produk]+=1;
@@ -9,7 +9,13 @@ if (isset($_SESSION['keranjang'][$id_produk])) {
 }
 
 
-echo "<script> alert('Produk telah ditambahkan ke keranjang')</script>";
-echo "<script> location ='keranjang.php' </script>";
+echo '<script>
+    Swal.fire({
+        title: "Produk telah ditambahkan ke keranjang",
+        icon: "success"
+    }).then(function() {
+        window.location = "keranjang.php";
+    });
+</script>';
 
 ?>

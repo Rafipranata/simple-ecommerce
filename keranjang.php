@@ -1,28 +1,18 @@
 <?php
   include 'koneksi.php';
 
-if (isset($_POST['beli'])) {
-  // Proses pembelian
-  // ...
+  if (empty($_SESSION['keranjang']) || !isset($_SESSION["keranjang"])) {
+    echo '<script>
+        Swal.fire({
+            title: "Keranjang Kosong",
+            text: "Silahkan Belanja Dahulu",
+            icon: "warning"
+        }).then(function() {
+            window.location = "index.php";
+        });
+    </script>';
+  };
 
-  // Redirect ke halaman keranjang atau halaman lain yang sesuai
-  header("Location: keranjang.php");
-  exit;
-}
-
-// Memeriksa kunci "keranjang"
-if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
-  // Menggunakan foreach hanya jika "keranjang" adalah array yang terdefinisi
-  foreach ($_SESSION["keranjang"] as $item) {
-    // Lakukan sesuatu dengan setiap item dalam keranjang
-    // ...
-  }
-} else {
-  // Menampilkan pesan "Keranjang kosong"
-  echo "<script>alert('Keranjang kosong, silahkan beli produk terlebih dahulu');</script>";
-  echo "<script>window.location.href = 'index.php';</script>";
-  exit;
-}
 ?>
 
 
@@ -42,17 +32,17 @@ if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link " aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="keranjang.php">Keranjang</a>
+          <a class="nav-link active" href="keranjang.php">Keranjang</a>
         </li>
         <li class="nav-item dropdown">
           <?php if (isset($_SESSION["pelanggan"])):?>
-            <a class="nav-link active" href="logout.php" id="navbarDropdown">
+            <a class="nav-link " href="logout.php" id="navbarDropdown">
             Logout
           </a>
           <?php  else:?>
@@ -77,6 +67,8 @@ if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
     <h1>
       Keranjang Belanja
     </h1>
+  </div>
+  <div class="container" style="overflow-x: auto;">
     <hr>
     <table class="table table-bordered ">
       <thead class="table-secondary ">
@@ -86,6 +78,7 @@ if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
           <th>Harga</th>
           <th>Jumlah</th>
           <th>Subharga</th>
+          <th>Aksi</th>
         </tr>
       </thead>
       <tbody> 
@@ -100,6 +93,9 @@ if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
           <td>Rp.<?php echo number_format( $pecah['harga_produk'])?></td>
           <td><?php echo $jumlah?></td>
           <td>Rp.<?php echo number_format($subharga)?></td>
+          <td>
+            <a href="hapuskeranjang.php?id=<?php  echo $id_produk ?>" class="btn btn-danger btn-xs">Hapus</a>
+          </td>
         </tr>
         <?php $no++?>
         <?php endforeach ?>
@@ -111,7 +107,7 @@ if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
             Checkout
           </a>
           <?php else: ?>
-          <a type="button" class="btn btn-primary" href="login.php" id="navbarDropdown" onclick="alert('Anda harus login terlebih dahulu')">
+          <a type="button" class="btn btn-primary" id="navbarDropdown" onclick="showLoginAlert()">
             Checkout
           </a>
           <?php endif?>
@@ -120,6 +116,17 @@ if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
 
 
 
-
+  <script>
+  function showLoginAlert() {
+    Swal.fire({
+      title: "Anda harus login terlebih dahulu",
+      icon: "warning",
+      timer: 2000, // Menampilkan SweetAlert selama 2 detik
+      showConfirmButton: false
+    }).then(function() {
+      window.location.href = "login.php";
+    });
+  }
+</script>
 </body>
 </html>

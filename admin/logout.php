@@ -1,7 +1,15 @@
 <?php
 session_destroy();
-echo "<script> alert('Anda Berhasil Logout') </script>";
-echo "<script>location ='login.php' </script>";
+echo '<script>
+    Swal.fire({
+        title: "Berhasil Logout",
+        icon: "success"
+    }).then(function() {
+        window.location = "login.php";
+    });
+</script>';
+
+
 
 
 

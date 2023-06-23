@@ -1,6 +1,7 @@
 <?php
 include "koneksi.php"
 
+
 ?>
 
 
@@ -26,7 +27,7 @@ include "koneksi.php"
           <a class="nav-link active" href="index.php" aria-current="page">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="keranjang.php">Keranjang</a>
+          <a class="nav-link" href="cek.php">Keranjang</a>
         </li>
         <li class="nav-item dropdown">
           <?php if (isset($_SESSION["pelanggan"])):?>
@@ -40,7 +41,7 @@ include "koneksi.php"
           <?php endif?>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+          <a class="nav-link" href="cek2.php">Checkout</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -55,7 +56,6 @@ include "koneksi.php"
   <div class="container">
     <h1>Produk Terbaru</h1>
 
-
     <div class="row">
       <?php $ambil = $koneksi->query("SELECT * FROM produk");?>
       <?php while ($perproduk = $ambil->fetch_assoc()){?>
@@ -66,7 +66,7 @@ include "koneksi.php"
                   <h5 class="card-title"><?php echo $perproduk['nama_produk'] ?></h5>
                   <p class="card-text">Rp.<?php echo number_format( $perproduk['harga_produk'] ) ?></p>
                   <a href="beli.php?id=<?php echo $perproduk['id_produk']   ?>" class="btn btn-primary w-50 md-block" name='beli'>Beli</a>
-                  <a href="detailProduk.php?id=<?php echo $perproduk['id_produk']   ?>" class="btn btn-outline-info">Detail Produk</a>
+                  <a href="detailProduk.php?id=<?php echo $perproduk['id_produk'] ?>" class="btn btn-outline-info">Detail Produk</a>
                 </div>
             </div>
         </div>
