@@ -2,7 +2,7 @@
 include "koneksi.php";
 $id_produk = $_GET['id'];
 if (isset($_SESSION['keranjang'][$id_produk])) {
-    $_SESSION['keranjang'][$id_produk]+=1;
+    $_SESSION['keranjang'][$id_produk] +=1;
     
 } else{
     $_SESSION['keranjang'][$id_produk] = 1;
@@ -11,7 +11,8 @@ if (isset($_SESSION['keranjang'][$id_produk])) {
 
 echo '<script>
     Swal.fire({
-        title: "Produk telah ditambahkan ke keranjang",
+        title: "Berhasil",
+        text: "Produk telah ditambahkan ke keranjang",
         icon: "success"
     }).then(function() {
         window.location = "keranjang.php";

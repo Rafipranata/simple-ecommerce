@@ -13,7 +13,6 @@
     <title>Document</title>
 </head>
 <body>
-    <pre><?php print_r($_SESSION)  ?></pre>
     <div class="ui container">
     <table class="ui celled table">
 <thead>

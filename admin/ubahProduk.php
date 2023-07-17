@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -27,6 +30,14 @@
     <label>Berat Produk (Gr)</label>
     <input type="number" name="berat" placeholder="Berat Produk" value="<?php echo $pecah['berat'];  ?>">
     </div>
+    
+    <div class="field">
+    <label>Stok Produk</label>
+    <input type="number" name="stok" placeholder="Berat Produk" value="<?php echo $pecah['stok_produk'];  ?>">
+    </div>
+    
+    
+    
     <div class="ui form">
     <div class="field">
         <label>Deskripsi Produk</label>
@@ -63,6 +74,7 @@
                 nama_produk = '{$_POST['nama']}',
                 harga_produk = '{$_POST['harga']}',
                 berat = '{$_POST['berat']}',
+                stok_produk = '{$_POST['stok']}',
                 foto_produk = '$namafoto',
                 deskripsi_produk = '{$_POST['deskripsi']}'
                 WHERE id_produk = '{$_GET['id']}'";
@@ -71,14 +83,22 @@
                 nama_produk = '{$_POST['nama']}',
                 harga_produk = '{$_POST['harga']}',
                 berat = '{$_POST['berat']}',
+                stok_produk = '{$_POST['stok']}',
                 deskripsi_produk = '{$_POST['deskripsi']}'
                 WHERE id_produk = '{$_GET['id']}'";
         }
     
         $koneksi->query($query);
     
-        echo "<script>alert('Produk Telah Diubah')</script>";
-        echo "<script>location='index.php?halaman=produk'</script>";
+        echo "<script>
+        Swal.fire({
+            title: 'Produk Telah Diubah',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(function() {
+            window.location.href = 'index.php?halaman=produk';
+        });
+    </script>";
     }
     
     ?>

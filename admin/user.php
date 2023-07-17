@@ -41,8 +41,8 @@
             </button></a>
         </td>
     </tr>
-            <?php } ?>
             <?php $no++?>
+            <?php } ?>
     </tbody>
 </table>
 </div>

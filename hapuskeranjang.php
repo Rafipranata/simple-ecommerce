@@ -5,7 +5,8 @@ unset($_SESSION["keranjang"][$id_produk]);
 
 echo '<script>
     Swal.fire({
-        title: "Produk Telah dihapus dari keranjang",
+        title: "Berhasil",
+        text: "Produk Telah dihapus dari keranjang",
         icon: "success"
     }).then(function() {
         window.location = "keranjang.php";

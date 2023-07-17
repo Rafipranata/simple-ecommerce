@@ -118,7 +118,13 @@ if (!isset($_SESSION['admin'])) {
             elseif ($_GET['halaman']=="hapusProduk") {
                 include 'hapusProduk.php';
             }
+            elseif ($_GET['halaman']=="kirim") {
+                include 'kirim.php';
+            }
             
+            elseif ($_GET['halaman']=="gagal") {
+                include 'gagal.php';
+            }
             elseif ($_GET['halaman']=="ubahProduk") {
                 include 'ubahProduk.php';
             }

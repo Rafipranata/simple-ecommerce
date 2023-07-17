@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,34 +27,45 @@
     <tr>
                 <td data-label="Name"><?php echo $no?></td>
                 <td data-label="Age"><?php echo $pecah["nama_pelanggan"]; ?></td>
-                <td data-label="Job"><?php echo $pecah["tanggal_pembelian"]; ?></td>
+                <td data-label="Job"><?php echo $pecah["status_pembelian"]; ?></td>
                 <td data-label="Job"><?php echo number_format($pecah["total_pembelian"])   ?></td>
                 <td data-label="Job">
-                <a href="index.php?halaman=detail&id=<?php echo $pecah["id_pembelian"] ?>"><button class="ui green button">
-                    Detail
-            </button></a>
+                <div class="ui grid">
+                <div class="four wide column"><a href="index.php?halaman=detail&id=<?php echo $pecah["id_pembelian"] ?>"><button class="ui green button"> Detail</button></a></div>
+                <div class="four wide column"><a href="#"><button class="ui negative button" onclick="hapusData('<?php echo $pecah['id_pembelian'] ?>')">Hapus</button></a></div>
+                
+                <?php if ($pecah['status_pembelian'] == "proses"): ?>
+                <div class="four wide column"><a href="index.php?halaman=kirim&id=<?php echo $pecah["id_pembelian"] ?>" class="ui primary button">Dikirim</a></div>
+                <div class="four wide column"><a href="index.php?halaman=gagal&id=<?php echo $pecah["id_pembelian"] ?>" class="ui inverted red button">Gagal</a></div>
+                </div>
+                
+            <?php endif?>
         </td>
                 </td>
     </tr>
-            <tr>
-                <td data-label="Name">Jill</td>
-                <td data-label="Age">26</td>
-                <td data-label="Job">Engineer</td>
-                <td data-label="Job">Engineer</td>
-                <td data-label="Job">Engineer</td>
-            </tr>
-            <tr>
-                <td data-label="Name">Elyse</td>
-                <td data-label="Age">24</td>
-                <td data-label="Job">Designer</td>
-                <td data-label="Job">Designer</td>
-                <td data-label="Job">Designer</td>
-            </tr>
+    <?php $no++ ?>
             <?php  }  ?>
-            <?php $no++ ?>
+            
     </tbody>
 </table>
     </div>
-
+<script>
+    function hapusData(id) {
+        Swal.fire({
+            title: 'Konfirmasi',
+            text: "Apakah Anda yakin ingin menghapus data ini?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "hapusOrder.php?id=" + id;
+            }
+        });
+    }
+</script>
 </body>
 </html>

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -14,15 +16,16 @@
 
 
         <div class="ui container" style="color:white; background-color:#04A0F9; border-radius: 3px;">
-        <strong><?php echo $detail['nama_pelanggan']    ?></strong>
+        Nama: <strong><?php echo $detail['nama_pelanggan'] ?></strong>
         <p>
-            <?php  echo $detail['telepon_pelanggan']?><br>
-            <?php  echo $detail['email_pelanggan']?><br>
+            Telepon: <?php echo $detail['telepon_pelanggan'] ?><br>
+            Email: <?php echo $detail['email_pelanggan'] ?><br>
         </p>
 
         <p>
-            Tanggal Pembelian:  <?php echo $detail['tanggal_pembelian']  ?><br>
-            Total Pembelian: Rp. <?php echo number_format( $detail['total_pembelian'] ) ?>
+            Tanggal Pembelian: <?php echo $detail['tanggal_pembelian'] ?><br>
+            Total Pembelian: Rp. <?php echo number_format($detail['total_pembelian']) ?> <br>
+            Alamat: <?php echo $detail['alamat_pelanggan'] ?>
         </p>
         </div>
 
@@ -39,23 +42,29 @@
     </thead>
     <tbody>
         <?php $no=1   ?>
-    <?php $ambilData = $koneksi->query("SELECT * FROM pembelian_produk JOIN produk ON pembelian_produk. 
-        id_produk=produk.id_produk WHERE pembelian_produk. id_pembelian= '$_GET[id]'");
-        ?>
-        <?php while ($pecah= $ambilData->fetch_assoc()){?>
-        <tr>
-            <td data-label="Job"><?php echo $no ?></td>
-            <td data-label="Name"><?php echo $pecah['nama_produk']?><br></td>
-            <td data-label="Age"><?php  echo number_format($pecah['harga_produk'])?><br></td>
-            <td data-label="Job"><?php  echo $pecah['jumlah']?><br></td>
-            <td data-label="Job"><?php  echo number_format($pecah['harga_produk'] * $pecah['jumlah'])?></td>
-            
-        </tr>
-            <?php $no++ ?>
-            <?php } ?>
-    </tbody>
-        </table>
-</div>
+        <?php
+$ambilData = $koneksi->query("SELECT * FROM pembelian_produk 
+    JOIN produk ON pembelian_produk.id_produk = produk.id_produk 
+    WHERE pembelian_produk.id_pembelian = '$_GET[id]'");
+
+while ($pecah = $ambilData->fetch_assoc()) {
+    ?>
+    <tr>
+        <td data-label="Job"><?php echo $no ?></td>
+        <td data-label="Name"><?php echo $pecah['nama_produk'] ?><br></td>
+        <td data-label="Age"><?php echo number_format($pecah['harga_produk']) ?><br></td>
+        <td data-label="Job"><?php echo $pecah['jumlah'] ?><br></td>
+        <td data-label="Job"><?php echo number_format($pecah['harga_produk'] * $pecah['jumlah']) ?></td>
+    </tr>
+    <?php $no++ ?>
+<?php } ?>
+</tbody>
+</table>
+<?php if ($detail['status_pembelian'] == "proses"): ?>
+<a href="../lihat.php?id=<?php echo $_GET['id'] ?>" class="ui yellow button">Lihat Pembayaran</a>
+<?php endif?>
+
+    </div>
 
 </body>
 </html>

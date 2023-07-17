@@ -21,47 +21,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Keranjang</title>
 </head>
 <body>
 
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link " aria-current="page" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="keranjang.php">Keranjang</a>
-        </li>
-        <li class="nav-item dropdown">
-          <?php if (isset($_SESSION["pelanggan"])):?>
-            <a class="nav-link " href="logout.php" id="navbarDropdown">
-            Logout
-          </a>
-          <?php  else:?>
-          <a class="nav-link active" href="login.php" id="navbarDropdown">
-            Login
-          </a>
-          <?php endif?>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="chekout.php">Checkout</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+<?php include "navbar.php"?>
 
   <div class="container">
     <h1>
@@ -71,14 +35,12 @@
   <div class="container" style="overflow-x: auto;">
     <hr>
     <table class="table table-bordered ">
-      <thead class="table-secondary ">
+      <thead class="bg-light ">
         <tr>
-          <th>No</th>
           <th>Produk</th>
-          <th>Harga</th>
           <th>Jumlah</th>
           <th>Subharga</th>
-          <th>Aksi</th>
+          <th>Opsi</th>
         </tr>
       </thead>
       <tbody> 
@@ -88,9 +50,7 @@
               $pecah = $ambil -> fetch_assoc();
               $subharga = $pecah['harga_produk'] * $jumlah; ?>
         <tr>
-          <td><?php echo $no?></td>
           <td><?php echo $pecah['nama_produk']?></td>
-          <td>Rp.<?php echo number_format( $pecah['harga_produk'])?></td>
           <td><?php echo $jumlah?></td>
           <td>Rp.<?php echo number_format($subharga)?></td>
           <td>

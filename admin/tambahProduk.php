@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -24,6 +26,13 @@
     <label>Berat Produk (Gr)</label>
     <input type="number" name="berat" placeholder="Berat Produk">
     </div>
+
+    <div class="field">
+    <label>Stok Produk</label>
+    <input type="number" name="stok" placeholder="Stok Produk">
+    </div>
+    
+    
     <div class="ui form">
     <div class="field">
         <label>Deskripsi Produk</label>
@@ -46,14 +55,35 @@ if (isset($_POST["simpan"])) {
     $nama_produk = $_POST['nama'];
     $harga_produk = $_POST['harga'];
     $berat_produk = $_POST['berat'];
+    $stok = $_POST["stok"];
     $deskripsi_produk = $_POST['deskripsi'];
 
-    $query = "INSERT INTO produk (nama_produk, harga_produk, berat, foto_produk, deskripsi_produk) VALUES ('$nama_produk', '$harga_produk', '$berat_produk', '$nama' ,'$deskripsi_produk')";
-    $koneksi->query($query);
+    if (empty($nama_produk) || empty($harga_produk) || empty($berat_produk) || empty($deskripsi_produk)) {
+        // Jika ada input yang kosong, tampilkan Sweet Alert gagal
+        echo "<script>
+            Swal.fire({
+                title: 'Gagal',
+                text: 'Harap lengkapi semua',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        </script>";
+    } else {
+        $query = "INSERT INTO produk (nama_produk, harga_produk, berat, foto_produk, deskripsi_produk, stok_produk) VALUES ('$nama_produk', '$harga_produk', '$berat_produk', '$nama' ,'$deskripsi_produk', '$stok')";
+        $koneksi->query($query);
 
-    echo "<script> alert('Produk Baru Telah Ditambahkan') </script>";
-    echo "<script>location.href='index.php?halaman=produk'  </script>";
+        echo "<script>
+            Swal.fire({
+                title: 'Produk Berhasil Ditambahkan',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(function() {
+                window.location.href = 'index.php?halaman=produk';
+            });
+        </script>";
+    }
 }
+
 ?>
 
 
