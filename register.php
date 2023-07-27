@@ -8,7 +8,7 @@ include "koneksi.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style-login/register.css">
-    <title>Document</title>
+    <title>Register</title>
 </head>
 <style>
 
