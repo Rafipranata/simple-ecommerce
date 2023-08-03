@@ -59,16 +59,16 @@ include "koneksi.php";
                     $yangcocok = $ambil->num_rows;
                     if ($yangcocok == 1) {
                         echo '<div class="alert alert-danger mb-0" role="alert">
-                    <h5>Login Gagal</h5>
-                    Email Telah Digunakan
-                    </div>';
-                        echo "<meta http-equiv='refresh' content='1;url=register.php'>";
+                                <h5>Login Gagal</h5>
+                                Email Telah Digunakan
+                                </div>';
+                                    echo "<meta http-equiv='refresh' content='1;url=register.php'>";
                     } else {
                         $koneksi->query("INSERT INTO pelanggan(email_pelanggan, password_pelanggan, nama_pelanggan, telepon_pelanggan, alamat_pelanggan)
                                 VALUES('$email', '$password', '$nama', '$telepon', '$alamat')");
                         echo '<div class="alert alert-primary" role="alert">
-                        <h5>Login Berhasil</h5>
-                        Silahkan Login
+                                    <h5>Login Berhasil</h5>
+                                    Silahkan Login
                         </div>';
                             echo "<meta http-equiv='refresh' content='1;url=login.php'>";
                     }
@@ -76,7 +76,6 @@ include "koneksi.php";
             ?>
         </form>
     </div>
-
 
 
 </body>
