@@ -67,6 +67,7 @@ include "koneksi.php";
         </tbody>
     
     </table>
+    <?php if ($detail['status_pembelian'] != "dikirim" && $detail['status_pembelian'] != "gagal"): ?>
         <div class="row">
                 <div class="col-md-7">
                     <div class="alert alert-primary" role="alert">
@@ -75,6 +76,7 @@ include "koneksi.php";
                     </div>
                 </div>
         </div>
+        <?php endif ?>
 </div>
 
 </body>

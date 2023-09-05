@@ -5,9 +5,6 @@ include "koneksi.php";
 //mendapatkan id_pembelian dari url
 
 $id_pem = $_GET["id"];
-$ambil = $koneksi->query("SELECT * FROM pembayaran WHERE id_pembelian = '$id_pem'");
-$detail_pem = $ambil->fetch_assoc();
-
 
 
 ?>
@@ -53,6 +50,10 @@ $detail_pem = $ambil->fetch_assoc();
                 </div>
             <div class="card-body shadow">
                 <form action="" method="post" enctype="multipart/form-data">
+                <?php  
+                $ambil = $koneksi->query("SELECT * FROM pembayaran WHERE id_pembelian = '$id_pem'");
+                $detail_pem = $ambil->fetch_assoc();
+                ?>
                 <div class="row">
                     <div class="col">
                         <input type="text" class="form-control" name="nama" placeholder="nama" aria-label="First name" value="<?php echo $detail_pem['nama']?>" disabled readonly>

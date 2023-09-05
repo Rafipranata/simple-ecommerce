@@ -13,6 +13,7 @@ $detail = $ambil->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin/assets/vendors/splide/dist/css/splide.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -21,7 +22,7 @@ $detail = $ambil->fetch_assoc();
 <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="fotoProduk/<?php echo $detail['foto_produk']?>" alt="..." /></div>
+                    <div class="col-md-6 "><img class="card-img-top mb-5 mb-md-0 shadow" src="fotoProduk/<?php echo $detail['foto_produk']?>" alt="..." /></div>
                     <div class="col-md-6">
                         <div class="small mb-1  fw-bold fs-5">Stok: <?php echo $detail['stok_produk']?></div>
                         <h1 class="display-5 fw-bolder"><?php echo $detail['nama_produk']?></h1>
@@ -72,9 +73,9 @@ $detail = $ambil->fetch_assoc();
                         <?php while ($perproduk = $ambil->fetch_assoc()){?>
                         <li class="splide__slide">
                             <div class="col mb-5">
-                                <div class="card h-100">
+                                <div class="card h-100 ">
                                     <!-- Product image-->
-                                    <img class="card-img-top" src="fotoProduk/<?php echo $perproduk['foto_produk'] ?>" alt="..." />
+                                    <img class="card-img-top " src="fotoProduk/<?php echo $perproduk['foto_produk'] ?>" alt="..." />
                                     <!-- Product details-->
                                     <div class="card-body p-4">
                                         <div class="text-center">
@@ -99,7 +100,7 @@ $detail = $ambil->fetch_assoc();
     </div>
 </section>
 
-
+<script src="admin/assets/vendors/splide/dist/js/splide.min.js"></script>
 <!-- Initialize the Splide carousel -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {

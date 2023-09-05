@@ -20,14 +20,20 @@ if (!isset($_SESSION['pelanggan'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/b-2.4.1/r-2.5.0/sc-2.2.0/sp-2.2.0/sr-1.3.0/datatables.min.css" rel="stylesheet">
+ 
+
+
+ 
+
+
     <title>Dashboard</title>
 </head>
-<body>
+<body style="background-color: #eee;">
 
 <?php include "navbar.php"?>
 
-<section style="background-color: #eee;">
+<section >
     <div class="container py-5">
         <div class="row">
         
@@ -126,27 +132,27 @@ if (!isset($_SESSION['pelanggan'])){
             </div>
             <div class="col-lg-15">
     
-    <div class="#" style="overflow-x: auto;">
+    <div class="table-responsive" style="overflow-x: auto;">
         <div class="card"> 
         <div class="card-header">
             Riwayat Belanja <?php echo $pecah['nama_pelanggan']; ?>
         </div>
         <div class="card-body container">
-        <table id="example" class="table table-bordered">
-            <thead class="table-primary">
+        <table id="myTable" class="table table-bordered table-striped">
+            <thead class="">
                 <tr>
                     <th>Status</th>
                     <th>Total</th>
                     <th class="w-25">Opsi</th>
                 </tr>
             </thead>
+            <tbody>
             <?php
             
             $ambil= $koneksi->query("SELECT * FROM pembelian WHERE id_pelanggan = '$id_pelanggan'");
             
             while ($pecah = $ambil->fetch_assoc()){
             ?>
-            <tbody>
                 <tr> 
                     <td><?php echo $pecah["status_pembelian"] ?></td>
                     <td>Rp. <?php echo number_format($pecah["total_pembelian"]) ?></td>
@@ -176,8 +182,15 @@ if (!isset($_SESSION['pelanggan'])){
         </div>
     </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/b-2.4.1/r-2.5.0/sc-2.2.0/sp-2.2.0/sr-1.3.0/datatables.min.js"></script>
 <script>
-    new DataTable('#example');
-</script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+            
+        });
+
+        
+    </script>
 </body>
 </html>

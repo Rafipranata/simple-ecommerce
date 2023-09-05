@@ -60,8 +60,8 @@
             <a class="nav-link active" href="cek2.php">Checkout</a>
             </li>
         </ul>
-        <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" action="pencarian.php" method="GET" >
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         </div>
