@@ -67,30 +67,30 @@ if ($id_pelanggan_login !== $id_pelanggan_beli) {
                 </div>
             <div class="card-body shadow">
                 <form action="" method="post" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col">
-                        <input type="text" class="form-control" name="nama" placeholder="nama" aria-label="First name">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" name="nama" required placeholder="nama" aria-label="First name">
+                        </div>
+                        <div class="col">
+                        <input class="form-control" type="text" value="Rp. <?php echo number_format($detail_pem['total_pembelian'])?>" aria-label="Disabled input example" disabled readonly>
+                        
+                        </div>
                     </div>
-                    <div class="col">
-                    <input class="form-control" type="text" value="Rp. <?php echo number_format($detail_pem['total_pembelian'])?>" aria-label="Disabled input example" disabled readonly>
                     
+                    <div class="mb-3 mt-3">
+                        <input type="text" class="form-control" required name="bank" id="formGroupExampleInput" placeholder="Bank">
                     </div>
-                </div>
-                
-                <div class="mb-3 mt-3">
-                    <input type="text" class="form-control" name="bank" id="formGroupExampleInput" placeholder="Bank">
-                </div>
-                
-                <div class="mb-3">
-                    <input type="number" class="form-control" name="jumlah" id="formGroupExampleInput2" placeholder="Jumlah" >
-                    <div id="emailHelp" class="form-text">Isi sesuai nominal yang diatas</div>
-                </div>
-                
-                <div class="mb-3">
-                    <input type="file" class="form-control" name="bukti" id="formGroupExampleInput2" >
-                    <div id="emailHelp" class="form-text text-danger">Foto bukti pembayaran maksimal 2 MB</div>
-                </div>
-                <button class="btn btn-success" name="bayar">Bayar</button>
+                    
+                    <div class="mb-3">
+                        <input type="number" class="form-control" required name="jumlah" id="formGroupExampleInput2" placeholder="Jumlah" >
+                        <div id="emailHelp" class="form-text">Isi sesuai nominal yang diatas</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input type="file" class="form-control" required name="bukti" id="formGroupExampleInput2" >
+                        <div id="emailHelp" class="form-text text-danger">Foto bukti pembayaran maksimal 2 MB</div>
+                    </div>
+                    <button class="btn btn-success" name="bayar">Bayar</button>
                 </form>
                 <?php
                 if (isset($_POST["bayar"])){
