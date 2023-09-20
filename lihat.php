@@ -5,8 +5,7 @@ include "koneksi.php";
 //mendapatkan id_pembelian dari url
 
 $id_pem = $_GET["id"];
-
-
+$id_pelanggan_login = $_SESSION["pelanggan"]["id_pelanggan"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +22,7 @@ $id_pem = $_GET["id"];
         
         </div>
         <?php
-        $ambil = $koneksi->query("SELECT * FROM pelanggan");
+        $ambil = $koneksi->query("SELECT * FROM pelanggan WHERE id_pelanggan = '$id_pelanggan_login'");
         $pecah = $ambil->fetch_assoc();
         ?>
         <div class="row">
@@ -36,7 +35,7 @@ $id_pem = $_GET["id"];
                 <p class="text-muted mb-1"><?php echo $pecah['email_pelanggan'];  ?></p>
                 <p class="text-muted mb-4"><?php echo $pecah['telepon_pelanggan'];  ?></p>
                 <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Ubah</button>
+                <a type="button" class="btn btn-primary" href="ubahProfile.php?id=<?php echo $_SESSION['pelanggan']['id_pelanggan']?>" >Ubah</a>
                 <a href="logout.php"><button type="button" class="btn btn-outline-danger ms-1">Logout</button></a>
                 </div>
             </div>
